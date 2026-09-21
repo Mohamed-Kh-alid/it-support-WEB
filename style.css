@@ -181,8 +181,40 @@ html, body {
     color: #fff; font-size: 1.6rem; cursor: pointer;
 }
 
-/* Main Wrapper & Slide-in Animation */
-.main-wrapper { margin-left: 310px; flex-grow: 1; display: flex; flex-direction: column; min-height: 100vh; width: calc(100% - 310px); }
+/* Main Wrapper & Cinematic Page Transition Effects */
+.main-wrapper { 
+    margin-left: 310px; 
+    flex-grow: 1; 
+    display: flex; 
+    flex-direction: column; 
+    min-height: 100vh; 
+    width: calc(100% - 310px); 
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cinematic-exit {
+    opacity: 0;
+    transform: scale(0.96) translateY(20px);
+    pointer-events: none;
+}
+
+.cinematic-enter {
+    animation: cinematicIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes cinematicIn {
+    0% {
+        opacity: 0;
+        transform: scale(1.04) translateY(-20px);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
+}
+
 .main-content { 
     flex-grow: 1; 
     padding: 30px 36px 30px 10px; 
@@ -250,10 +282,9 @@ html, body {
     position: relative;
 }
 
-/* تأثير الـ Pop & Lift القوي عند الوقوف على الصف بالماوس */
 .modern-table tbody tr:hover {
     background-color: #EEF2FF !important;
-    transform: translateY(-5px) scale(1.01) !important;
+    transform: translateY(-5px) scale(1.005) !important;
     box-shadow: 0 10px 25px -5px rgba(79, 70, 229, 0.25) !important;
     z-index: 10;
     cursor: pointer;
@@ -265,7 +296,11 @@ html, body {
 .tab-content.active { display: block !important; }
 
 .data-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; width: 100%; box-shadow: var(--shadow-main); }
-.table-container { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-container { 
+    width: 100%; 
+    overflow-x: hidden; 
+    position: relative;
+}
 .modern-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; min-width: 500px; }
 .modern-table th {
     background-color: var(--border-subtle); color: var(--text-secondary);
@@ -297,31 +332,76 @@ html, body {
 }
 .action-btn:hover { background-color: var(--accent-indigo); color: #FFFFFF; border-color: var(--accent-indigo); }
 
-/* Slide-over Drawer / Modal */
+/* ==========================================================
+   Cinematic Center Modal / Popup Animation
+   ========================================================== */
 .drawer-overlay {
-    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background-color: rgba(30, 41, 59, 0.4); backdrop-filter: blur(4px); display: flex; justify-content: flex-end; align-items: center;
-    z-index: 2000; opacity: 0; visibility: hidden; transition: all 0.3s ease; padding: 15px;
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
+    background-color: rgba(15, 23, 42, 0.65);
+    backdrop-filter: blur(8px);
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 2000; 
+    opacity: 0; 
+    visibility: hidden; 
+    transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease; 
+    padding: 20px;
 }
-.drawer-overlay.active { opacity: 1; visibility: visible; }
+
+.drawer-overlay.active { 
+    opacity: 1; 
+    visibility: visible; 
+}
 
 .drawer-container {
-    background-color: var(--card-bg); border-left: 1px solid var(--border-color);
-    width: 100%; max-width: 450px; height: 100%; display: flex; flex-direction: column;
-    transform: translateX(100%); transition: transform 0.3s ease; overflow-y: auto; padding: 28px;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    background-color: var(--card-bg); 
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%; 
+    max-width: 520px; 
+    max-height: 85vh; 
+    display: flex; 
+    flex-direction: column;
+    border-radius: 24px; 
+    padding: 32px;
+    transform: scale(0.85) translateY(30px); 
+    opacity: 0;
+    transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease; 
+    overflow-y: auto;
+    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(79, 70, 229, 0.1);
 }
-.drawer-overlay.active .drawer-container { transform: translateX(0); }
 
-.drawer-container.modal-box {
-    max-width: 550px; height: auto; max-height: 85vh; border-radius: 20px;
-    border: 1px solid var(--border-color); transform: scale(0.95);
+.drawer-overlay.active .drawer-container { 
+    transform: scale(1) translateY(0); 
+    opacity: 1;
 }
-.drawer-overlay.active .drawer-container.modal-box { transform: scale(1); }
 
 .drawer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
-.drawer-header h3 { font-size: 0.95rem; color: var(--success-text); font-weight: 600; display: flex; align-items: center; gap: 8px; }
-.drawer-close { background: transparent; border: none; color: var(--text-secondary); font-size: 1.5rem; cursor: pointer; }
+.drawer-header h3 { font-size: 1.05rem; color: var(--success-text); font-weight: 700; display: flex; align-items: center; gap: 8px; }
+.drawer-close { 
+    background: var(--bg-app); 
+    border: 1px solid var(--border-color); 
+    color: var(--text-secondary); 
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem; 
+    cursor: pointer; 
+    transition: all 0.2s ease;
+}
+.drawer-close:hover {
+    background-color: var(--error-color);
+    color: #FFFFFF;
+    border-color: var(--error-color);
+    transform: rotate(90deg);
+}
 
 /* Profile Card Box */
 .profile-card-box {
