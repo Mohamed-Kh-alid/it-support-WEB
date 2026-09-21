@@ -15,10 +15,17 @@ let fileUsername = "pharma";
 let filePassword = "Ph@rma1515";
 let isVacationsUnlocked = false;
 
+// Initialize script execution on DOM content loaded
 document.addEventListener('DOMContentLoaded', () => {
     loadOnlineDashboardData();
     initLiveClock();
     initScrollTopBtn();
+    
+    // Check for cinematic entry effect on page load
+    const mainWrapper = document.querySelector('.main-wrapper');
+    if (mainWrapper) {
+        mainWrapper.classList.add('cinematic-enter');
+    }
     
     const passInput = document.getElementById('vacationPassword');
     if (passInput) {
@@ -27,6 +34,25 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Cinematic navigation function to switch to Night Shift tab smoothly
+function goToNightShiftCinematic() {
+    const mainWrapper = document.querySelector('.main-wrapper');
+    if (mainWrapper) {
+        mainWrapper.classList.add('cinematic-exit');
+    }
+    
+    setTimeout(() => {
+        const nightShiftMenuBtn = document.querySelectorAll('.menu-item')[1];
+        if (nightShiftMenuBtn) {
+            switchTab('nightShift', nightShiftMenuBtn);
+        }
+        if (mainWrapper) {
+            mainWrapper.classList.remove('cinematic-exit');
+            mainWrapper.classList.add('cinematic-enter');
+        }
+    }, 400);
+}
 
 // Initialize and update live clock automatically
 function initLiveClock() {
@@ -72,6 +98,7 @@ function initScrollTopBtn() {
     });
 }
 
+// Check credentials for Annual Vacations tab
 function checkVacationsLogin() {
     const userInput = document.getElementById('vacationUsername').value.trim().toLowerCase();
     const passInput = document.getElementById('vacationPassword').value.trim();
@@ -87,6 +114,7 @@ function checkVacationsLogin() {
     }
 }
 
+// Format Excel serial date to standard string
 function formatExcelDate(serial) {
     if (!serial) return 'N/A';
     if (isNaN(serial)) return serial;
@@ -95,6 +123,7 @@ function formatExcelDate(serial) {
     return `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}/${date.getFullYear()}`;
 }
 
+// Parse Excel serial date to JavaScript Date object
 function parseExcelDateObj(serial) {
     if (!serial) return null;
     if (typeof serial === 'string' && serial.includes('/')) {
@@ -112,6 +141,7 @@ function parseExcelDateObj(serial) {
     return isNaN(parsed) ? null : new Date(parsed.getFullYear(), parsed.getMonth(), parsed.getDate());
 }
 
+// Fetch and load online dashboard data from Google Sheets
 async function loadOnlineDashboardData() {
     try {
         const response = await fetch(GOOGLE_SHEETS_DIRECT_URL);
@@ -164,6 +194,7 @@ async function loadOnlineDashboardData() {
     }
 }
 
+// Update current active night shift engineer on metric card
 function updateCurrentNightShiftEngineer(data) {
     const metricNightShift = document.getElementById('metricNightShift');
     if (!metricNightShift) return;
@@ -191,11 +222,13 @@ function updateCurrentNightShiftEngineer(data) {
     metricNightShift.innerText = activeEngineer;
 }
 
+// Toggle mobile sidebar menu visibility
 function toggleMobileMenu() {
     const sidebar = document.getElementById('appSidebar');
     sidebar.classList.toggle('show-sidebar');
 }
 
+// Switch between dashboard tabs
 function switchTab(tabId, element) {
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.querySelectorAll('.menu-item').forEach(btn => btn.classList.remove('active'));
@@ -224,6 +257,7 @@ function switchTab(tabId, element) {
     document.getElementById('pageSubtitle').innerText = titles[tabId].subtitle;
 }
 
+// Render Work Distribution table data
 function renderWorkDistributionTable(data) {
     const tbody = document.getElementById('workDistributionTableBody');
     if (!tbody) return;
@@ -243,7 +277,6 @@ function renderWorkDistributionTable(data) {
 
         const tr = document.createElement('tr');
         tr.className = 'clickable-row';
-        // تطبيق تأثير النزول بالتتابع (Staggered Animation Delay) لكل صف بناءً على رقمه
         tr.style.animationDelay = `${index * 0.08}s`;
         tr.onclick = () => openBranchModal(groupName, engineers, branchListArray);
         tr.innerHTML = `
@@ -260,6 +293,7 @@ function renderWorkDistributionTable(data) {
     }
 }
 
+// Render Night Shift schedule table data
 function renderNightShiftTable(data) {
     const tbody = document.getElementById('nightShiftTableBody');
     if (!tbody) return;
@@ -290,6 +324,7 @@ function renderNightShiftTable(data) {
     });
 }
 
+// Render Annual Vacations table data
 function renderVacationsTable(data) {
     const tbody = document.getElementById('annualVacationsTableBody');
     if (!tbody) return;
@@ -313,6 +348,7 @@ function renderVacationsTable(data) {
     });
 }
 
+// Open employee profile drawer popup
 function openEmployeeDrawer(engineerName, startDate, endDate, rowNum) {
     const cleanName = engineerName.trim();
     const lookupKey = cleanName.toLowerCase();
@@ -338,10 +374,12 @@ function openEmployeeDrawer(engineerName, startDate, endDate, rowNum) {
     document.getElementById('employeeDrawer').classList.add('active');
 }
 
+// Close employee profile drawer popup
 function closeEmployeeDrawer() {
     document.getElementById('employeeDrawer').classList.remove('active');
 }
 
+// Open branch assignment modal popup
 function openBranchModal(groupName, engineers, branchesArray) {
     currentModalBranches = branchesArray;
     document.getElementById('modalGroupName').innerText = groupName;
@@ -352,10 +390,12 @@ function openBranchModal(groupName, engineers, branchesArray) {
     document.getElementById('branchModal').classList.add('active');
 }
 
+// Close branch assignment modal popup
 function closeBranchModal() {
     document.getElementById('branchModal').classList.remove('active');
 }
 
+// Render branch tags inside modal
 function renderModalBranchTags(branchesArray) {
     const container = document.getElementById('modalBranchesList');
     container.innerHTML = '';
@@ -371,12 +411,14 @@ function renderModalBranchTags(branchesArray) {
     });
 }
 
+// Filter branches inside modal search bar
 function filterModalBranches() {
     const query = document.getElementById('modalBranchSearch').value.toLowerCase();
     const filtered = currentModalBranches.filter(b => b.toLowerCase().includes(query));
     renderModalBranchTags(filtered);
 }
 
+// Global table data filtering function
 function filterTableData() {
     const query = document.getElementById('globalSearch').value.toLowerCase();
     if (activeTabName === 'nightShift') {
