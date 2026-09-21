@@ -1,5 +1,5 @@
 /* ==========================================================
-   Pharma Overseas - IT Service Desk Script Logic
+   Pharma Overseas - IT Service Desk Script Logic (English Only)
    ========================================================== */
 
 const GOOGLE_SHEETS_DIRECT_URL = "https://docs.google.com/spreadsheets/d/19eCMXNFvRVdgfWQi3j5hDOwyoAU-iExn_Fqv4D8VXYA/export?format=xlsx";
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// تحديث الساعة والتوقيت الحي تلقائياً
+// Initialize and update live clock automatically
 function initLiveClock() {
     function updateClock() {
         const now = new Date();
@@ -181,7 +181,6 @@ function switchTab(tabId, element) {
     element.classList.add('active');
     activeTabName = tabId;
 
-    // إغلاق القائمة الجانبية تلقائياً في الهواتف عند اختيار تبويب
     if (window.innerWidth <= 1024) {
         document.getElementById('appSidebar').classList.remove('show-sidebar');
     }
@@ -253,7 +252,7 @@ function renderNightShiftTable(data) {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td><span class="index-badge">${rowNum}</span></td>
-            <td><strong style="color: #FFFFFF;">${engName}</strong></td>
+            <td><strong style="color: var(--text-primary);">${engName}</strong></td>
             <td>${startDate}</td>
             <td style="color: var(--success-text); font-weight: 600;">${endDate}</td>
             <td style="text-align: right;">
@@ -338,7 +337,7 @@ function renderModalBranchTags(branchesArray) {
     }
     branchesArray.forEach(branch => {
         const tag = document.createElement('div');
-        tag.style.cssText = "background: rgba(255,255,255,0.04); border: 1px solid var(--border-color); color: var(--text-primary); padding: 6px 12px; border-radius: 6px; font-size: 0.82rem;";
+        tag.style.cssText = "background: var(--bg-app); border: 1px solid var(--border-color); color: var(--text-primary); padding: 6px 12px; border-radius: 8px; font-size: 0.82rem;";
         tag.innerText = branch;
         container.appendChild(tag);
     });
