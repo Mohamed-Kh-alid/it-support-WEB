@@ -82,11 +82,12 @@
                             <span class="metric-label">Total Covered</span>
                         </div>
                     </div>
-                    <div class="metric-card highlight-card">
+                    <!-- Night Shift Highlight Card with Cinematic Routing Support -->
+                    <div class="metric-card highlight-card" id="nightShiftMetricCard" onclick="goToNightShiftCinematic()">
                         <div class="metric-icon"><i class="fa-solid fa-user-shield" style="color: var(--success-text);"></i></div>
                         <div class="metric-info">
                             <span class="metric-value" id="metricNightShift">Loading...</span>
-                            <span class="metric-label">Night Shift (Today)</span>
+                            <span class="metric-label">Night Shift (Today) <i class="fa-solid fa-arrow-right" style="font-size: 0.7rem; margin-left: 4px;"></i></span>
                         </div>
                     </div>
                 </section>
@@ -203,14 +204,12 @@
                 <button class="drawer-close" onclick="closeEmployeeDrawer()">&times;</button>
             </div>
 
-            <!-- Profile Card Box -->
             <div class="profile-card-box">
                 <div id="drawerEmpIdBadge" class="profile-id-tag">#PO-2026</div>
                 <h2 id="drawerEmpName" class="profile-name">Yousef Ibrahim</h2>
                 <p id="drawerEmpTitle" class="profile-title">IT Technical Support Specialist</p>
             </div>
 
-            <!-- Corporate Information -->
             <div class="info-section-title">Corporate Information</div>
             <div class="info-box">
                 <div class="info-row">
@@ -231,7 +230,6 @@
                 </div>
             </div>
 
-            <!-- Night Shift Rotation Period -->
             <div class="info-section-title">Night Shift Rotation Period</div>
             <div class="info-box">
                 <div class="shift-dates-grid">
@@ -252,7 +250,7 @@
         </div>
     </div>
 
-    <!-- زر العودة للأعلى -->
+    <!-- Scroll-to-Top Button -->
     <button id="scrollTopBtn" class="scroll-top-btn" title="Back to top">
         <i class="fa-solid fa-arrow-up"></i>
     </button>
