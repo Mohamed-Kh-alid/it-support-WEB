@@ -20,6 +20,25 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Custom Scrollbar Styles for Smooth Experience */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-app);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #CBD5E1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-indigo);
+}
+
 html, body {
     width: 100%;
     min-height: 100vh;
@@ -298,7 +317,7 @@ html, body {
 .data-card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 20px; overflow: hidden; width: 100%; box-shadow: var(--shadow-main); }
 .table-container { 
     width: 100%; 
-    overflow-x: hidden; 
+    overflow-x: auto; 
     position: relative;
 }
 .modern-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 0.88rem; min-width: 500px; }
