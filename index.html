@@ -17,8 +17,7 @@
         <aside class="sidebar" id="appSidebar">
             <div class="sidebar-brand">
                 <div class="brand-logo-container">
-                    <!-- تم تعديل الامتداد هنا ليكون حروف صغيرة logo.jpg -->
-                    <img src="logo.jpg" alt="Pharma Overseas logo" class="brand-logo">
+                    <img src="logo.jpg" alt="Pharma Overseas Logo" class="brand-logo">
                 </div>
                  <div class="brand-text-area">
                     <h2>PHARMA OVERSEAS</h2>
@@ -49,7 +48,6 @@
             <!-- Top Mobile Bar -->
             <header class="mobile-top-bar">
                 <div style="display: flex; align-items: center; gap: 10px;">
-                    <!-- وهنا أيضاً تم التعديل لـ logo.jpg -->
                     <img src="logo.jpg" alt="logo" style="width: 28px; height: 28px; object-fit: contain;">
                     <div class="mobile-brand-title">IT Service Desk</div>
                 </div>
@@ -115,8 +113,8 @@
                     <div id="tab-nightShift" class="tab-content">
                         <div class="data-card">
                             <div style="padding: 20px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                                <h3 style="font-size: 1rem; color: #FFFFFF; display: flex; align-items: center; gap: 10px;">📅 Rotation Schedule Table</h3>
-                                <span id="rotationCountBadge" style="background: rgba(59, 130, 246, 0.15); color: #60A5FA; padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">0 Rotations</span>
+                                <h3 style="font-size: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 10px;">📅 Rotation Schedule Table</h3>
+                                <span id="rotationCountBadge" style="background: rgba(79, 70, 229, 0.1); color: var(--accent-indigo); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">0 Rotations</span>
                             </div>
                             <div class="table-container">
                                 <table class="modern-table">
@@ -138,13 +136,13 @@
                     <!-- Tab 3: Annual Vacations -->
                     <div id="tab-annualVacations" class="tab-content">
                         <div id="vacationsLoginBox" style="display: flex; justify-content: center; padding: 40px 20px;">
-                            <div style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 35px; border-radius: 14px; width: 100%; max-width: 400px; text-align: center;">
-                                <h3 style="color: #FFFFFF; margin-bottom: 8px;">🔒 Restricted Page</h3>
+                            <div style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 35px; border-radius: 16px; width: 100%; max-width: 400px; text-align: center; box-shadow: var(--shadow-sm);">
+                                <h3 style="color: var(--text-primary); margin-bottom: 8px;">🔒 Restricted Page</h3>
                                 <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 20px;">Please enter credentials to view Annual Vacations.</p>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
-                                    <input type="text" id="vacationUsername" placeholder="Username..." style="padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-app); color: #fff; outline:none;">
-                                    <input type="password" id="vacationPassword" placeholder="Password..." style="padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); background: var(--bg-app); color: #fff; outline:none;">
-                                    <button onclick="checkVacationsLogin()" style="padding: 12px; border-radius: 8px; border: none; background: var(--accent-blue); color: #fff; font-weight: 650; cursor:pointer;">Unlock Page</button>
+                                    <input type="text" id="vacationUsername" placeholder="Username..." style="padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-app); color: var(--text-primary); outline:none;">
+                                    <input type="password" id="vacationPassword" placeholder="Password..." style="padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-app); color: var(--text-primary); outline:none;">
+                                    <button onclick="checkVacationsLogin()" style="padding: 12px; border-radius: 10px; border: none; background: var(--accent-indigo); color: #fff; font-weight: 650; cursor:pointer;">Unlock Page</button>
                                     <p id="vacationErrorMsg" style="color: var(--error-color); font-size: 0.8rem;"></p>
                                 </div>
                             </div>
@@ -184,14 +182,14 @@
                 <h3 id="modalGroupName">Assigned Branches</h3>
                 <button class="drawer-close" onclick="closeBranchModal()">&times;</button>
             </div>
-            <div style="margin-bottom: 15px;"><span id="modalEngineersName" style="color: var(--accent-blue); font-size: 0.85rem;">Engineers: </span></div>
+            <div style="margin-bottom: 15px;"><span id="modalEngineersName" style="color: var(--accent-indigo); font-size: 0.85rem;">Engineers: </span></div>
             <div style="margin-bottom: 15px;">
-                <input type="text" id="modalBranchSearch" placeholder="Search branch..." onkeyup="filterModalBranches()" style="width: 100%; background: var(--bg-app); border: 1px solid var(--border-color); border-radius: 8px; padding: 10px; color: #fff; outline: none;">
+                <input type="text" id="modalBranchSearch" placeholder="Search branch..." onkeyup="filterModalBranches()" style="width: 100%; background: var(--bg-app); border: 1px solid var(--border-color); border-radius: 10px; padding: 10px; color: var(--text-primary); outline: none;">
             </div>
             <div id="modalBranchesList" style="display: flex; flex-wrap: wrap; gap: 8px; max-height: 350px; overflow-y: auto;"></div>
             <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-subtle); padding-top: 15px;">
                 <span id="modalTotalCount" style="font-size: 0.8rem; color: var(--text-secondary);">Total: 0 Branches</span>
-                <button onclick="closeBranchModal()" style="background: var(--accent-blue); color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer;">Close</button>
+                <button onclick="closeBranchModal()" style="background: var(--accent-indigo); color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer;">Close</button>
             </div>
         </div>
     </div>
@@ -216,11 +214,11 @@
             <div class="info-box">
                 <div class="info-row">
                     <span class="info-label">✉️ Email:</span>
-                    <span id="drawerEmpEmail" class="info-value" style="font-size: 0.82rem; color: #60A5FA;">user@pharmaoverseas.com</span>
+                    <span id="drawerEmpEmail" class="info-value" style="font-size: 0.82rem; color: var(--accent-indigo);">user@pharmaoverseas.com</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">📞 Phone:</span>
-                    <span id="drawerEmpPhone" class="info-value" style="color: #34D399;">N/A</span>
+                    <span id="drawerEmpPhone" class="info-value" style="color: var(--success-text);">N/A</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">🆔 ID:</span>
@@ -248,7 +246,7 @@
             </div>
 
             <div style="margin-top: auto; padding-top: 20px; text-align: center;">
-                <button onclick="closeEmployeeDrawer()" style="width: 100%; background: var(--accent-blue); color: #fff; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer;">Done</button>
+                <button onclick="closeEmployeeDrawer()" style="width: 100%; background: var(--accent-indigo); color: #fff; border: none; padding: 12px; border-radius: 10px; font-weight: 600; cursor: pointer;">Done</button>
             </div>
         </div>
     </div>
