@@ -18,6 +18,7 @@ let isVacationsUnlocked = false;
 document.addEventListener('DOMContentLoaded', () => {
     loadOnlineDashboardData();
     initLiveClock();
+    initScrollTopBtn();
     
     const passInput = document.getElementById('vacationPassword');
     if (passInput) {
@@ -48,6 +49,27 @@ function initLiveClock() {
     }
     updateClock();
     setInterval(updateClock, 10000);
+}
+
+// Scroll-to-Top Button Logic
+function initScrollTopBtn() {
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    if (!scrollTopBtn) return;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('show');
+        } else {
+            scrollTopBtn.classList.remove('show');
+        }
+    });
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
 }
 
 function checkVacationsLogin() {
@@ -221,6 +243,8 @@ function renderWorkDistributionTable(data) {
 
         const tr = document.createElement('tr');
         tr.className = 'clickable-row';
+        // تطبيق تأثير النزول بالتتابع (Staggered Animation Delay) لكل صف بناءً على رقمه
+        tr.style.animationDelay = `${index * 0.08}s`;
         tr.onclick = () => openBranchModal(groupName, engineers, branchListArray);
         tr.innerHTML = `
             <td><strong>${engineers}</strong></td>
@@ -250,6 +274,7 @@ function renderNightShiftTable(data) {
         const rowNum = index + 1;
 
         const tr = document.createElement('tr');
+        tr.style.animationDelay = `${index * 0.08}s`;
         tr.innerHTML = `
             <td><span class="index-badge">${rowNum}</span></td>
             <td><strong style="color: var(--text-primary);">${engName}</strong></td>
@@ -270,11 +295,14 @@ function renderVacationsTable(data) {
     if (!tbody) return;
     tbody.innerHTML = '';
 
-    data.filter(row => {
+    const filteredRows = data.filter(row => {
         const name = row['Engineer Name'] || row['Infrastructure Support'];
         return name && name !== 'Available' && name !== 'NOT AVAILABLE';
-    }).forEach(row => {
+    });
+
+    filteredRows.forEach((row, index) => {
         const tr = document.createElement('tr');
+        tr.style.animationDelay = `${index * 0.08}s`;
         tr.innerHTML = `
             <td><strong>${row['Engineer Name'] || row['Infrastructure Support'] || ''}</strong></td>
             <td>${formatExcelDate(row['Start Date'])}</td>
