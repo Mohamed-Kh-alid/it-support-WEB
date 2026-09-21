@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 </head>
@@ -28,13 +29,13 @@
 
             <nav class="sidebar-menu">
                 <button class="menu-item active" onclick="switchTab('workDistribution', this)">
-                    <span>⇄</span> <span>Work Distribution</span>
+                    <i class="fa-solid fa-right-left"></i> <span>Work Distribution</span>
                 </button>
                 <button class="menu-item" onclick="switchTab('nightShift', this)">
-                    <span>⏱</span> <span>Night Shift</span>
+                    <i class="fa-solid fa-clock"></i> <span>Night Shift</span>
                 </button>
                 <button class="menu-item" onclick="switchTab('annualVacations', this)">
-                    <span>📅</span> <span>Annual Vacations</span>
+                    <i class="fa-solid fa-calendar-days"></i> <span>Annual Vacations</span>
                 </button>
             </nav>
 
@@ -61,28 +62,28 @@
                         <p id="pageSubtitle">Infrastructure Support & Branch Assignments</p>
                     </div>
                     <div class="search-box">
-                        <span class="search-icon">🔍</span>
+                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
                         <input type="text" id="globalSearch" placeholder="Search engineer..." onkeyup="filterTableData()">
                     </div>
                 </header>
 
                 <section class="metrics-row">
                     <div class="metric-card">
-                        <div class="metric-icon">👥</div>
+                        <div class="metric-icon"><i class="fa-solid fa-users" style="color: var(--accent-indigo);"></i></div>
                         <div class="metric-info">
                             <span class="metric-value" id="metricGroupsCount">7 Teams</span>
                             <span class="metric-label">Support Teams</span>
                         </div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-icon">🏢</div>
+                        <div class="metric-icon"><i class="fa-solid fa-building" style="color: #D97706;"></i></div>
                         <div class="metric-info">
                             <span class="metric-value" id="metricBranchesCount">117 Branches</span>
                             <span class="metric-label">Total Covered</span>
                         </div>
                     </div>
                     <div class="metric-card highlight-card">
-                        <div class="metric-icon">👤</div>
+                        <div class="metric-icon"><i class="fa-solid fa-user-shield" style="color: var(--success-text);"></i></div>
                         <div class="metric-info">
                             <span class="metric-value" id="metricNightShift">Loading...</span>
                             <span class="metric-label">Night Shift (Today)</span>
@@ -113,7 +114,7 @@
                     <div id="tab-nightShift" class="tab-content">
                         <div class="data-card">
                             <div style="padding: 20px 24px; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                                <h3 style="font-size: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 10px;">📅 Rotation Schedule Table</h3>
+                                <h3 style="font-size: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 10px;"><i class="fa-solid fa-calendar-week" style="color: var(--accent-indigo);"></i> Rotation Schedule Table</h3>
                                 <span id="rotationCountBadge" style="background: rgba(79, 70, 229, 0.1); color: var(--accent-indigo); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700;">0 Rotations</span>
                             </div>
                             <div class="table-container">
@@ -136,8 +137,8 @@
                     <!-- Tab 3: Annual Vacations -->
                     <div id="tab-annualVacations" class="tab-content">
                         <div id="vacationsLoginBox" style="display: flex; justify-content: center; padding: 40px 20px;">
-                            <div style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 35px; border-radius: 16px; width: 100%; max-width: 400px; text-align: center; box-shadow: var(--shadow-sm);">
-                                <h3 style="color: var(--text-primary); margin-bottom: 8px;">🔒 Restricted Page</h3>
+                            <div style="background-color: var(--card-bg); border: 1px solid var(--border-color); padding: 35px; border-radius: 16px; width: 100%; max-width: 400px; text-align: center; box-shadow: var(--shadow-main);">
+                                <h3 style="color: var(--text-primary); margin-bottom: 8px;"><i class="fa-solid fa-lock" style="color: var(--error-color);"></i> Restricted Page</h3>
                                 <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 20px;">Please enter credentials to view Annual Vacations.</p>
                                 <div style="display: flex; flex-direction: column; gap: 12px;">
                                     <input type="text" id="vacationUsername" placeholder="Username..." style="padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); background: var(--bg-app); color: var(--text-primary); outline:none;">
@@ -198,7 +199,7 @@
     <div id="employeeDrawer" class="drawer-overlay" onclick="closeEmployeeDrawer(event)">
         <div class="drawer-container" onclick="event.stopPropagation()">
             <div class="drawer-header">
-                <h3>🟢 EMPLOYEE ID PROFILE</h3>
+                <h3><i class="fa-solid fa-id-card"></i> EMPLOYEE ID PROFILE</h3>
                 <button class="drawer-close" onclick="closeEmployeeDrawer()">&times;</button>
             </div>
 
@@ -213,19 +214,19 @@
             <div class="info-section-title">Corporate Information</div>
             <div class="info-box">
                 <div class="info-row">
-                    <span class="info-label">✉️ Email:</span>
+                    <span class="info-label"><i class="fa-solid fa-envelope"></i> Email:</span>
                     <span id="drawerEmpEmail" class="info-value" style="font-size: 0.82rem; color: var(--accent-indigo);">user@pharmaoverseas.com</span>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">📞 Phone:</span>
+                    <span class="info-label"><i class="fa-solid fa-phone"></i> Phone:</span>
                     <span id="drawerEmpPhone" class="info-value" style="color: var(--success-text);">N/A</span>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">🆔 ID:</span>
+                    <span class="info-label"><i class="fa-solid fa-fingerprint"></i> ID:</span>
                     <span id="drawerEmpIdVal" class="info-value">PO-2026-01</span>
                 </div>
                 <div class="info-row">
-                    <span class="info-label">🏢 Dept:</span>
+                    <span class="info-label"><i class="fa-solid fa-building-user"></i> Dept:</span>
                     <span id="drawerEmpDept" class="info-value">Information Technology</span>
                 </div>
             </div>
@@ -250,6 +251,11 @@
             </div>
         </div>
     </div>
+
+    <!-- زر العودة للأعلى -->
+    <button id="scrollTopBtn" class="scroll-top-btn" title="Back to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
 
     <script src="script.js"></script>
 </body>
